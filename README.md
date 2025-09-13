@@ -3,3 +3,4 @@ This respository keeps track of my learning journey following the Google's pytho
 
 ## useful links
 - The python standard library [link](https://docs.python.org/3/library/)
+- List of all string methods [link](https://docs.python.org/3/library/stdtypes.html#string-methods)
