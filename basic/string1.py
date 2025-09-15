@@ -25,7 +25,10 @@
 # and donuts(23) returns 'Number of donuts: many'
 def donuts(count):
   # +++your code here+++
-  return
+  if count < 10:
+    return f'Number of donuts: {count}'
+  else:
+    return 'Number of donuts: many'
 
 
 # B. both_ends
@@ -35,8 +38,10 @@ def donuts(count):
 # is less than 2, return instead the empty string.
 def both_ends(s):
   # +++your code here+++
-  return
-
+  if len(s) < 2:
+    return ''
+  else:
+    return s[0:2] + s[-2:]
 
 # C. fix_start
 # Given a string s, return a string
@@ -49,7 +54,11 @@ def both_ends(s):
 # where all instances of stra have been replaced by strb.
 def fix_start(s):
   # +++your code here+++
-  return
+  first_char = s[0]  # remember first char
+  s_replaced_all = s.replace(first_char, '*')  # replace all occurrence
+  s_final = s_replaced_all.replace(s_replaced_all[0], first_char, 1)  # put back the first char
+  return s_final
+  
 
 
 # D. MixUp
@@ -61,7 +70,10 @@ def fix_start(s):
 # Assume a and b are length 2 or more.
 def mix_up(a, b):
   # +++your code here+++
-  return
+  ind = 2
+  a_swapped = a[0:ind] + b[ind:]
+  b_swapped = b[0:ind] + a[ind:]
+  return b_swapped + ' ' + a_swapped
 
 
 # Provided simple test() function used in main() to print
@@ -84,13 +96,13 @@ def main():
   test(donuts(10), 'Number of donuts: many')
   test(donuts(99), 'Number of donuts: many')
 
+
   print()
   print('both_ends')
   test(both_ends('spring'), 'spng')
   test(both_ends('Hello'), 'Helo')
   test(both_ends('a'), '')
   test(both_ends('xyz'), 'xyyz')
-
 
   print()
   print('fix_start')
@@ -105,6 +117,7 @@ def main():
   test(mix_up('dog', 'dinner'), 'dig donner')
   test(mix_up('gnash', 'sport'), 'spash gnort')
   test(mix_up('pezzy', 'firm'), 'fizzy perm')
+
 
 
 # Standard boilerplate to call the main() function.
