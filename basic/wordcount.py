@@ -46,16 +46,31 @@ import sys
 # Then print_words() and print_top() can just call the utility function.
 
 ###
+# step 1: write helper function to read file
+# step 2: write print_words(): using dictionary to keep track of word counts
+# step 3: write print_top(): call print_words() and sort results
+
+# helper function to read find
+def read_file(filename):
+    with open(filename, "rt", encoding="utf-8") as f:
+        content = f.read()
+        return content.split()
 
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
 def main():
+
+  content = read_file("superfour.txt")
+  print(content)
+  sys.exit(0)
+
   if len(sys.argv) != 3:
     print('usage: ./wordcount.py {--count | --topcount} file')
     sys.exit(1)
 
   option = sys.argv[1]
   filename = sys.argv[2]
+
   if option == '--count':
     print_words(filename)
   elif option == '--topcount':
