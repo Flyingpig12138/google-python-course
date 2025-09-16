@@ -37,7 +37,7 @@ def linear_merge(list1, list2):
   # Take whichever element [0] is smaller.
   while len(list1) and len(list2):
     if list1[0] < list2[0]:
-      result.append(list1.pop(0))
+      result.append(list1.pop(0))  # list1.pop(0) removes and returns the element at 0 index
     else:
       result.append(list2.pop(0))
 
