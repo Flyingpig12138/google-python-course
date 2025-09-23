@@ -53,16 +53,53 @@ import sys
 # helper function to read find
 def read_file(filename):
     with open(filename, "rt", encoding="utf-8") as f:
-        content = f.read()
-        return content.split()
+        content = f.read()  # content is <class 'str'>, thus immutable
+        content_cleaned = content.replace(',','').replace('.','')  # remove comma, full stop
+        content_lower = content_cleaned.lower()  # convert to lower case
+        return content_lower.split()  # return as split list
+
+# print_words(): 
+def print_words(filename):
+    content = read_file(filename)  # read file
+    dict = {}  # store all str in content as keys, count as value
+    # go through content
+    for str in content:
+        if str in dict:  # increase count if exist
+            dict[str] += 1
+        else:            # add new key and set count as 1
+            dict[str] = 1
+    # sort by word
+    # dict_sorted = sorted(dict)
+    # print results
+    for (key, value) in dict.items():
+        print(f'{key}\t\t{value}')
+    print('----------')
+
+    # return 
+    return dict
+
+# print_top():
+def print_top(filename):
+    # get dict from print_words
+    dict = print_words(filename)
+    # sort based on value
+    dict_sorted = sorted(dict.items(), key=lambda x: x[1], reverse=True)
+    # print top 20
+    ind = 0
+    while ind < 20:
+        print(f'{ind+1:5}: {dict_sorted[ind][0]:<15}{dict_sorted[ind][1]:10}')
+        ind += 1
+
+
 
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
 def main():
 
-  content = read_file("superfour.txt")
-  print(content)
-  sys.exit(0)
+  # ----- test helper function -----
+  # content = read_file("superfour.txt")
+  # print(content)
+  # sys.exit(0)
 
   if len(sys.argv) != 3:
     print('usage: ./wordcount.py {--count | --topcount} file')
