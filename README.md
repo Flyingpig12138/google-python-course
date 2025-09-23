@@ -59,11 +59,10 @@ This respository keeps track of my learning journey following the Google's pytho
     print(list1)
     >>> ['h','o','n','d','a']  # list0[0] as a string is iterable, thus each single char is looped through and added separately 
     ```
-
-    ### Sorting
-    - `sorted(*iterable*, key=*key*, reverse=*reverse*)`: sort a list in ascending order (default). 
-        - `sorted()` returns a new list (sorted) and the original list is not changed.
-        - Input *iterable*: any *iterables* such as number (sorted numerically) or char (sorted alphabetically)
-        - Input *key*: function that set the sorting rule (e.g., len -> sort by length)
-        - Input *reverse*: True/False: sorting order
+### Sorting
+- `sorted(*iterable*, key=*key*, reverse=*reverse*)`: sort a list in ascending order (default). 
+    - `sorted()` returns a new list (sorted) and the original list is not changed.
+    - Input *iterable*: any *iterables* such as number (sorted numerically) or char (sorted alphabetically)
+    - Input *key*: function that set the sorting rule (e.g., len -> sort by length)
+    - Input *reverse*: True/False: sorting order
         
