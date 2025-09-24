@@ -114,15 +114,14 @@ def main():
         f.write(summary_text)
     else: 
       print(summary_text)
-
-
-    
-    
-
-
-  # +++your code here+++
-  # For each filename, get the names, then either print the text output
-  # or write it to a summary file
+  
+  """ Part B:
+  running babynames.py with all .html files as input: 
+  simply running "./babynames.py --summaryfile baby*.html" in the terminal is not gonna work. 
+  instead: do the following in terminal:
+    for f in "baby*.html"; do python3 babynames.py --summaryfile "$f"; done
+  this will automatically execute babynames.py multiple times, each with a distinctive .html file.
+  """
 
 if __name__ == '__main__':
   main()
