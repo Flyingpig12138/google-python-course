@@ -5,6 +5,8 @@ This respository keeps track of my learning journey following the Google's pytho
 - The python standard library [link](https://docs.python.org/3/library/)
 - List of all string methods [link](https://docs.python.org/3/library/stdtypes.html#string-methods)
 - type hint [link](https://docs.python.org/3/library/typing.html)
+- the big book of small python projects: [link](https://inventwithpython.com/bigbookpython/)
+- Python data science handbook: [link](https://jakevdp.github.io/PythonDataScienceHandbook/)
 
 ## Notes (by chapter)
 ### Strings
