@@ -41,13 +41,54 @@ def extract_names(filename):
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
   # +++your code here+++
-  return
+  # read the html file
+  with open(filename, "rt", encoding="utf-8") as f:
+    content = f.read()  # content is a string
+    f.close()  # close file
+  
+  # search and print year
+  match_year = re.search(r'Popularity in (\d+)', content)  # find match
+  # print(match_year.group()[-4:])  # extract only the year (4 digits)
+    
+  # find all names and print
+  match_names = re.findall(r'<tr align="right"><td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>',content)
+  # print(match_names)  # return a list of string tuples: (rank, name_male, name_female)
+
+  # put all names into dict
+  my_dict = {}  
+  for tup in match_names:  # tup = ('rank','name_male','name_female')
+    rank = int(tup[0])  # convert to int
+    names = tup[1:]  # names: ('name_male','name_female')
+    for name in names:
+      if name in my_dict:  # found duplicate key
+        my_dict[name] = min(rank, my_dict[name])  # accept better rank
+      else: 
+        my_dict[name] = rank  # add key-value pair
+  
+  # convert dict to list
+  my_list = []
+  for item in my_dict.items():
+    my_list.append(f"{item[0]} {item[1]}")
+  
+  # sort list based on names
+  my_sorted_list = sorted(my_list)
+
+  # insert year in the beningin :)
+  my_sorted_list.insert(0, match_year.group()[-4:])
+  # print(my_sorted_list)
+
+  # convert to summary text
+  summary_text = '\n'.join(my_sorted_list) + '\n'
+
+  # return
+  return summary_text
 
 
 def main():
   # This command-line parsing code is provided.
   # Make a list of command line arguments, omitting the [0] element
   # which is the script itself.
+  print(sys.argv)
   args = sys.argv[1:]
 
   if not args:
@@ -59,6 +100,25 @@ def main():
   if args[0] == '--summaryfile':
     summary = True
     del args[0]
+
+  # debug for baby*.html: 
+  # print(args[])
+  
+  # go through each filenames
+  for filename in args:
+    # call extract_names() function
+    summary_text = extract_names(filename)  
+    # print or write file
+    if summary:
+      with open(f'{filename}.summary', 'w', encoding='utf-8') as f:
+        f.write(summary_text)
+    else: 
+      print(summary_text)
+
+
+    
+    
+
 
   # +++your code here+++
   # For each filename, get the names, then either print the text output
